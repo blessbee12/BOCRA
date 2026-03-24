@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="About the Botswana Communications Regulatory Authority – regulating with Botho, connecting Botswana's future."/>
+  <title>About Us | BOCRA — Botswana Communications Regulatory Authority</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'bocra-blue':   '#0066B3',
+            'bocra-blue-d': '#004D88',
+            'bocra-blue-l': '#1A7EC4',
+            'bocra-teal':   '#2A9D8F',
+            'bocra-teal-d': '#1F7A6E',
+            'bocra-gold':   '#EFB034',
+            'bocra-gold-d': '#C8901A',
+            'bocra-ink':    '#0D1B2A',
+            'bocra-smoke':  '#F4F7FB',
+            'bocra-muted':  '#6B7A8D',
+          },
+          fontFamily: {
+            heading: ['Syne', 'sans-serif'],
+            body:    ['Outfit', 'sans-serif'],
+            quote:   ['"Playfair Display"', 'serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            float: { '0%,100%': {transform:'translateY(0)'}, '50%': {transform:'translateY(-12px)'} }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Flip Cards */
+    .flip-card { perspective: 1200px; height: 480px; }
+    .flip-inner { position:relative; width:100%; height:100%; transition: transform 0.85s cubic-bezier(0.4,0,0.2,1); transform-style:preserve-3d; }
+    .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back { position:absolute; inset:0; backface-visibility:hidden; border-radius:1.5rem; padding:3rem 2.25rem; display:flex; flex-direction:column; justify-content:center; }
+    .flip-back { transform: rotateY(180deg); }
+
+    /* Scroll Reveal */
+    .reveal       { opacity:0; transform:translateY(36px);  transition: opacity .85s ease, transform .85s ease; }
+    .reveal-left  { opacity:0; transform:translateX(-36px); transition: opacity .85s ease, transform .85s ease; }
+    .reveal-right { opacity:0; transform:translateX(36px);  transition: opacity .85s ease, transform .85s ease; }
+    .reveal.in, .reveal-left.in, .reveal-right.in { opacity:1; transform:none; }
+
+    /* Nav */
+    #nav { transition: all .3s ease; }
+    #nav.scrolled { background:rgba(255,255,255,0.98) !important; box-shadow: 0 8px 40px -8px rgba(0,102,179,0.18); }
+
+    /* Timeline spine */
+    .tl-spine { background: linear-gradient(to bottom, #0066B3, #2A9D8F, #EFB034); }
+
+    /* Step connector line */
+    .step-wrap { position:relative; }
+    .step-wrap::before { content:''; position:absolute; left:22px; top:56px; bottom:-28px; width:2px; background:rgba(255,255,255,0.12); }
+    .step-wrap:last-child::before { display:none; }
+
+    /* Scroll indicator */
+    @keyframes scrollPulse { 0%,100%{height:56px;opacity:.7} 50%{height:28px;opacity:.2} }
+    .scroll-indicator { animation: scrollPulse 2s ease-in-out infinite; }
+
+    /* Mandate card bottom bar */
+    .mandate-card .bar { transform:scaleX(0); transform-origin:left; transition: transform .4s ease; }
+    .mandate-card:hover .bar { transform:scaleX(1); }
+    .mandate-card { transition: transform .3s ease, box-shadow .3s ease; }
+    .mandate-card:hover { transform:translateY(-8px); }
+
+    /* Stagger helpers */
+    .d1{transition-delay:.08s!important} .d2{transition-delay:.16s!important} .d3{transition-delay:.24s!important}
+    .d4{transition-delay:.32s!important} .d5{transition-delay:.40s!important} .d6{transition-delay:.48s!important}
+  </style>
+</head>
+<body class="bg-bocra-smoke text-bocra-ink font-body antialiased">
+
+  <!-- ══════════ NAVIGATION ══════════ -->
+  <nav id="nav" class="fixed top-0 inset-x-0 z-50 bg-white/90 backdrop-blur-xl border-b border-bocra-blue/8">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12 flex items-center justify-between h-20">
+      <a href="/" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-bocra-blue to-bocra-teal flex items-center justify-center text-white font-heading font-black text-2xl shadow-md group-hover:shadow-xl transition-shadow">B</div>
+        <span class="font-heading font-extrabold text-2xl tracking-tight text-bocra-ink">BOCRA</span>
+      </a>
+      <div class="hidden md:flex items-center gap-9">
+        <a href="#who"        class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Who We Are</a>
+        <a href="#mandate"    class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Mandate</a>
+        <a href="#purpose"    class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Purpose</a>
+        <a href="#journey"    class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Journey</a>
+        <a href="#impact"     class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Impact</a>
+        <a href="#leadership" class="text-bocra-muted hover:text-bocra-blue font-medium text-sm transition-colors">Leadership</a>
+        <a href="#contact"    class="bg-bocra-blue text-white px-7 py-3.5 rounded-xl font-semibold text-sm hover:bg-bocra-blue-d transition-all shadow-md hover:shadow-lg hover:-translate-y-px">Contact Us</a>
+      </div>
+      <button id="mob-btn" class="md:hidden p-2 rounded-lg border border-bocra-blue/20 text-bocra-blue">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mob-menu" class="hidden md:hidden bg-white border-t border-bocra-blue/10 px-6 py-5 space-y-4">
+      <a href="#who"        class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Who We Are</a>
+      <a href="#mandate"    class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Mandate</a>
+      <a href="#purpose"    class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Purpose</a>
+      <a href="#journey"    class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Journey</a>
+      <a href="#impact"     class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Impact</a>
+      <a href="#leadership" class="block text-bocra-muted hover:text-bocra-blue font-medium py-1">Leadership</a>
+      <a href="#contact"    class="block bg-bocra-blue text-white px-5 py-3 rounded-xl font-semibold text-center mt-2">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="relative min-h-screen flex items-center justify-center bg-bocra-ink text-white overflow-hidden">
+    <canvas id="hero-canvas" class="absolute inset-0 pointer-events-none"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-br from-bocra-blue-d/88 via-bocra-ink/78 to-bocra-teal/60 mix-blend-multiply"></div>
+    <!-- Decorative rings -->
+    <div class="absolute -right-48 -top-48 w-[680px] h-[680px] rounded-full border border-white/5 pointer-events-none"></div>
+    <div class="absolute -right-24 -top-24 w-[480px] h-[480px] rounded-full border border-bocra-gold/12 pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-24">
+      <div class="inline-flex items-center gap-4 bg-bocra-gold/15 border border-bocra-gold/30 rounded-full px-7 py-3.5 mb-12 text-bocra-gold font-semibold text-xs tracking-[0.2em] uppercase">
+        <span class="w-2.5 h-2.5 bg-bocra-gold rounded-full animate-pulse-slow"></span>
+        Established 1 April 2013 &nbsp;·&nbsp; Gaborone, Botswana
+      </div>
+      <h1 class="text-5xl sm:text-6xl md:text-7xl xl:text-[88px] font-heading font-extrabold leading-[1.03] mb-10 tracking-tight">
+        Regulating with <span class="text-bocra-gold">Botho</span>.<br class="hidden sm:block"/>
+        Connecting Botswana's Future.
+      </h1>
+      <p class="text-xl sm:text-2xl max-w-3xl mx-auto opacity-85 leading-relaxed font-light mb-14">
+        Independent converged regulator building a trusted, inclusive and innovative communications ecosystem — rooted in humanity, for every Motswana.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-5">
+        <a href="#who"     class="bg-bocra-gold text-bocra-ink px-12 py-5 rounded-2xl font-bold text-lg hover:bg-bocra-gold-d hover:shadow-2xl transition-all duration-300 hover:-translate-y-1.5">Discover Our Story</a>
+        <a href="#mandate" class="border-2 border-white/40 text-white px-12 py-5 rounded-2xl font-bold text-lg hover:bg-white/10 hover:border-white/70 transition-all duration-300">Our Mandate</a>
+      </div>
+    </div>
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/45 text-xs tracking-[0.25em] uppercase">
+      <span>Scroll to explore</span>
+      <div class="scroll-indicator w-px rounded-full bg-gradient-to-b from-white/60 to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ STATS BAR ══════════ -->
+  <div class="max-w-screen-xl mx-auto px-6 lg:px-12 -mt-24 relative z-20 mb-28">
+    <div class="reveal bg-gradient-to-r from-bocra-blue-d via-bocra-blue to-bocra-blue-l rounded-3xl px-10 py-12 md:px-16 shadow-2xl text-white">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+        <div>
+          <div class="text-5xl md:text-6xl font-heading font-extrabold text-bocra-gold mb-3 s-num" data-target="42" data-suf=".2M" data-dec="1">0</div>
+          <p class="text-sm md:text-base opacity-75 leading-snug">Mobile connections<br>regulated</p>
+        </div>
+        <div>
+          <div class="text-5xl md:text-6xl font-heading font-extrabold text-bocra-gold mb-3 s-num" data-target="98" data-suf="%" data-dec="0">0%</div>
+          <p class="text-sm md:text-base opacity-75 leading-snug">Population broadband<br>coverage</p>
+        </div>
+        <div>
+          <div class="text-5xl md:text-6xl font-heading font-extrabold text-bocra-gold mb-3 s-num" data-target="127" data-suf="" data-dec="0">0</div>
+          <p class="text-sm md:text-base opacity-75 leading-snug">Licensed operators<br>across Botswana</p>
+        </div>
+        <div>
+          <div class="text-5xl md:text-6xl font-heading font-extrabold text-bocra-gold mb-3 s-num" data-target="1800" data-suf="M+" data-dec="0">0M+</div>
+          <p class="text-sm md:text-base opacity-75 leading-snug">Pula invested<br>in UASF</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ WHO WE ARE ══════════ -->
+  <section id="who" class="py-28 md:py-36 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="grid lg:grid-cols-2 gap-16 xl:gap-28 items-center">
+        <div class="reveal-left">
+          <div class="inline-block bg-bocra-blue/10 text-bocra-blue px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-8">Who We Are</div>
+          <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-10 leading-tight">Botswana's Converged Communications Regulator</h2>
+          <p class="text-xl text-bocra-muted mb-7 leading-relaxed">Established under the <strong class="text-bocra-ink font-semibold">Communications Regulatory Authority Act 2012</strong>, BOCRA is the independent authority overseeing Botswana's entire communications landscape — telecommunications, broadcasting, postal services and the digital economy.</p>
+          <p class="text-xl leading-relaxed text-bocra-muted mb-7">We protect consumers, promote fair competition and ensure that every citizen — from Gaborone's city centre to the most remote village in the Kgalagadi — benefits from reliable, affordable communications.</p>
+          <p class="text-xl leading-relaxed">Our work is guided by the Setswana philosophy of <span class="font-semibold text-bocra-blue italic">Botho</span> — "a person is a person through other persons." This humanity-first ethos drives every regulation, every consultation, every decision.</p>
+          <div class="flex flex-wrap gap-3 mt-10">
+            <span class="px-5 py-2 bg-bocra-blue/8 text-bocra-blue rounded-full text-sm font-semibold">Telecommunications</span>
+            <span class="px-5 py-2 bg-bocra-teal/10 text-bocra-teal rounded-full text-sm font-semibold">Broadcasting</span>
+            <span class="px-5 py-2 bg-bocra-gold/15 text-bocra-gold-d rounded-full text-sm font-semibold">Postal Services</span>
+            <span class="px-5 py-2 bg-bocra-blue/8 text-bocra-blue rounded-full text-sm font-semibold">Digital Economy</span>
+            <span class="px-5 py-2 bg-bocra-teal/10 text-bocra-teal rounded-full text-sm font-semibold">Consumer Protection</span>
+          </div>
+        </div>
+        <div class="relative reveal-right">
+          <img src="https://images.unsplash.com/photo-1569523068606-5ef2d1e4c2d2?auto=format&fit=crop&w=1200&q=80" alt="Botswana connectivity" class="rounded-3xl shadow-2xl object-cover w-full h-[500px]"/>
+          <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-bocra-ink/50 to-transparent flex items-end p-8">
+            <p class="text-white font-medium text-sm opacity-90">📍 Gaborone &nbsp;·&nbsp; Serving 2.5 million Batswana since 2013</p>
+          </div>
+          <div class="absolute -bottom-10 -right-10 w-44 h-44 bg-bocra-gold rounded-full flex flex-col items-center justify-center text-bocra-ink shadow-2xl ring-8 ring-bocra-gold/20 animate-float">
+            <div class="text-5xl font-heading font-extrabold leading-none">12+</div>
+            <div class="text-xs font-bold uppercase tracking-wide mt-2 text-center leading-snug">Years of<br>Regulation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ MANDATE ══════════ -->
+  <section id="mandate" class="py-28 md:py-36 bg-bocra-smoke">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-block bg-bocra-blue/10 text-bocra-blue px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Our Mandate</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-7">Six Pillars of Oversight</h2>
+        <p class="text-xl text-bocra-muted max-w-3xl mx-auto leading-relaxed">Protecting consumers, promoting fair competition, enabling innovation and ensuring universal access across Botswana's full communications ecosystem.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d1">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-blue to-bocra-blue-l"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-blue/10 flex items-center justify-center text-3xl mb-8">📡</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Telecommunications</h3>
+            <p class="text-bocra-muted leading-relaxed">Licensing and regulation of mobile, fixed-line and data service providers. Interconnection rates, spectrum allocation and quality-of-service standards across Botswana.</p>
+          </div>
+        </div>
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d2">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-teal to-bocra-teal-d"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-teal/10 flex items-center justify-center text-3xl mb-8">📻</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Broadcasting</h3>
+            <p class="text-bocra-muted leading-relaxed">Oversight of radio and television broadcasters — public, commercial and community. Content standards, licensing, and ensuring diverse Botswana-relevant programming for all citizens.</p>
+          </div>
+        </div>
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d3">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-gold to-bocra-gold-d"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-gold/12 flex items-center justify-center text-3xl mb-8">📦</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Postal Services</h3>
+            <p class="text-bocra-muted leading-relaxed">Regulation of Botswana Post and private couriers. Universal service obligations, quality standards and transformation of postal infrastructure for the digital era.</p>
+          </div>
+        </div>
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d4">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-blue to-bocra-teal"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-blue/10 flex items-center justify-center text-3xl mb-8">🌐</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Digital Economy</h3>
+            <p class="text-bocra-muted leading-relaxed">Cybersecurity regulation, digital signatures, e-commerce frameworks and the Universal Access and Service Fund (UASF) driving digital inclusion for all Batswana.</p>
+          </div>
+        </div>
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d5">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-teal to-bocra-blue"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-teal/10 flex items-center justify-center text-3xl mb-8">🛡️</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Consumer Protection</h3>
+            <p class="text-bocra-muted leading-relaxed">Championing every communications user's rights. Complaint resolution, quality benchmarks, privacy enforcement and ensuring operators meet their obligations.</p>
+          </div>
+        </div>
+
+        <div class="mandate-card bg-white rounded-2xl shadow-md hover:shadow-2xl overflow-hidden relative group d6">
+          <div class="bar absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-bocra-gold to-bocra-teal"></div>
+          <div class="p-10">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-gold/12 flex items-center justify-center text-3xl mb-8">📊</div>
+            <h3 class="text-2xl font-heading font-bold mb-4 text-bocra-ink">Spectrum Management</h3>
+            <p class="text-bocra-muted leading-relaxed">Managing Botswana's national radio frequency spectrum — licensing, monitoring, interference resolution and efficient allocation for all operators.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ MISSION VISION VALUES ══════════ -->
+  <section id="purpose" class="py-28 md:py-36 bg-bocra-ink text-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-block bg-bocra-gold/15 text-bocra-gold px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Our Purpose</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-6">Mission, Vision &amp; Values</h2>
+        <p class="text-lg opacity-65 max-w-xl mx-auto">Hover each card to reveal the spirit behind the statement.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-10 reveal">
+
+        <div class="flip-card cursor-pointer">
+          <div class="flip-inner">
+            <div class="flip-front bg-white text-bocra-ink shadow-xl border border-bocra-blue/10">
+              <div class="text-6xl mb-9">🎯</div>
+              <h3 class="text-4xl font-heading font-extrabold mb-7">Mission</h3>
+              <p class="text-xl leading-relaxed opacity-85">To regulate the communications sector for competition, innovation, consumer protection and universal access — for the benefit of all Batswana.</p>
+            </div>
+            <div class="flip-back bg-gradient-to-br from-bocra-blue to-bocra-blue-d flex flex-col items-center justify-center text-center">
+              <p class="text-3xl font-quote italic leading-relaxed">"We build the digital foundation so Botswana can soar into a connected, prosperous future."</p>
+              <div class="mt-10 text-xs uppercase tracking-[0.2em] opacity-70 font-semibold">— BOCRA Mission</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card cursor-pointer">
+          <div class="flip-inner">
+            <div class="flip-front bg-white text-bocra-ink shadow-xl border border-bocra-teal/10">
+              <div class="text-6xl mb-9">🌍</div>
+              <h3 class="text-4xl font-heading font-extrabold mb-7">Vision</h3>
+              <p class="text-xl leading-relaxed opacity-85">A connected, digitally empowered Botswana where every citizen and business thrives through reliable, affordable and innovative communications.</p>
+            </div>
+            <div class="flip-back bg-gradient-to-br from-bocra-teal to-bocra-teal-d flex flex-col items-center justify-center text-center">
+              <p class="text-3xl font-quote italic leading-relaxed">"One Botswana, fully connected — from the Okavango Delta to the heart of Gaborone."</p>
+              <div class="mt-10 text-xs uppercase tracking-[0.2em] opacity-70 font-semibold">— BOCRA Vision</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-card cursor-pointer">
+          <div class="flip-inner">
+            <div class="flip-front bg-white text-bocra-ink shadow-xl border border-bocra-gold/10">
+              <div class="text-6xl mb-9">🤝</div>
+              <h3 class="text-4xl font-heading font-extrabold mb-7">Values</h3>
+              <ul class="text-xl space-y-4 opacity-85">
+                <li>✦ &nbsp;Excellence &amp; Integrity</li>
+                <li>✦ &nbsp;Proactiveness</li>
+                <li>✦ &nbsp;Botho — humanity first</li>
+                <li>✦ &nbsp;Accountability</li>
+              </ul>
+            </div>
+            <div class="flip-back bg-gradient-to-br from-bocra-gold to-bocra-gold-d text-bocra-ink flex flex-col items-center justify-center text-center">
+              <p class="text-3xl font-quote italic leading-relaxed">"Botho ke motso wa rona — humanity is our root, and connection is our gift."</p>
+              <div class="mt-10 text-xs uppercase tracking-[0.2em] opacity-60 font-semibold">— BOCRA Values</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ QUOTE CAROUSEL ══════════ -->
+  <section class="py-28 md:py-36 bg-gradient-to-br from-bocra-blue via-bocra-blue-l to-bocra-teal text-white text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10" style="background:radial-gradient(circle at 15% 85%, #EFB034 0%, transparent 50%), radial-gradient(circle at 85% 15%, #fff 0%, transparent 40%)"></div>
+    <div class="relative max-w-4xl mx-auto px-6 lg:px-12">
+      <span class="block text-[110px] leading-none opacity-15 font-quote select-none mb-2">"</span>
+      <div id="quote-text" class="text-3xl md:text-4xl font-quote italic leading-[1.45] min-h-[160px] transition-opacity duration-500">A person is a person through other persons. At BOCRA we connect Botswana with the same spirit of Botho — because communication is the most human act of all.</div>
+      <div id="quote-author" class="mt-10 text-lg font-semibold opacity-70 tracking-wide">— BOCRA Leadership</div>
+      <div id="quote-dots" class="flex justify-center gap-4 mt-10"></div>
+    </div>
+  </section>
+
+  <!-- ══════════ IMPACT ══════════ -->
+  <section id="impact" class="py-28 md:py-36 bg-gradient-to-b from-bocra-ink to-[#071424] text-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-block bg-bocra-gold/15 text-bocra-gold px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Our Impact</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-6">Connecting Botswana — by the Numbers</h2>
+        <p class="text-xl opacity-65 max-w-2xl mx-auto">Over a decade of measurable impact on Botswana's communications landscape.</p>
+      </div>
+      <div id="impact-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 reveal">
+
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">📱</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="4.2M">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Mobile connections regulated across Botswana</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🌐</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="98%">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Population with broadband access</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🏢</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="127">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Licensed operators in Botswana</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">💰</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="P1.8B+">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Pula invested in UASF projects</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">📻</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="86">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Licensed broadcasting stations</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🛡️</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="12K+">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Consumer complaints resolved</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">📡</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="5G">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">5G spectrum auctioned — Botswana enters the gigabit era</p>
+        </div>
+        <div class="bg-white/5 border border-white/8 rounded-2xl p-9 text-center hover:bg-white/10 hover:-translate-y-2 transition-all duration-300 group">
+          <div class="text-5xl mb-6 group-hover:scale-110 transition-transform duration-300">🏘️</div>
+          <div class="text-6xl font-heading font-extrabold text-bocra-gold i-num" data-d="350+">0</div>
+          <p class="mt-4 text-sm opacity-65 leading-snug">Rural communities connected via UASF</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ TIMELINE ══════════ -->
+  <section id="journey" class="py-28 md:py-36 bg-bocra-smoke">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-24 reveal">
+        <div class="inline-block bg-bocra-blue/10 text-bocra-blue px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Our Journey</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-7">From Legislation to Lasting Impact</h2>
+        <p class="text-xl text-bocra-muted max-w-3xl mx-auto">Over a decade of building Botswana's inclusive, connected digital future.</p>
+      </div>
+
+      <div class="relative max-w-5xl mx-auto reveal">
+        <div class="tl-spine absolute left-1/2 -translate-x-1/2 top-4 bottom-4 w-0.5 hidden lg:block"></div>
+
+        <!-- Template: left / right / left / right -->
+        <!-- 2012 LEFT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="lg:text-right lg:pr-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-blue/8 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-blue mb-3">2012</div>
+              <strong class="block text-lg text-bocra-ink mb-3">Communications Regulatory Authority Act</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">Parliament passes the landmark legislation creating BOCRA as Botswana's converged communications regulator.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-white border-4 border-bocra-blue text-bocra-blue font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2012</div>
+          </div>
+          <div class="hidden lg:block"></div>
+        </div>
+
+        <!-- 2013 RIGHT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="hidden lg:block"></div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-blue border-4 border-bocra-blue text-white font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2013</div>
+          </div>
+          <div class="lg:pl-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-teal/10 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-teal mb-3">2013</div>
+              <strong class="block text-lg text-bocra-ink mb-3">BOCRA Officially Established</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">1 April 2013 — BOCRA opens its doors, assuming regulatory responsibilities previously held by BOTEC and BTA.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2014 LEFT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="lg:text-right lg:pr-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-gold/10 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-gold-d mb-3">2014</div>
+              <strong class="block text-lg text-bocra-ink mb-3">Universal Access &amp; Service Fund</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">UASF created to fund connectivity in underserved communities — ultimately connecting 350+ rural villages across Botswana.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-white border-4 border-bocra-gold text-bocra-gold-d font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2014</div>
+          </div>
+          <div class="hidden lg:block"></div>
+        </div>
+
+        <!-- 2017 RIGHT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="hidden lg:block"></div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-white border-4 border-bocra-teal text-bocra-teal font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2017</div>
+          </div>
+          <div class="lg:pl-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-teal/10 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-teal mb-3">2017</div>
+              <strong class="block text-lg text-bocra-ink mb-3">National Broadband Strategy Launched</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">BOCRA anchors Botswana's ambitious national broadband plan, targeting 90% population coverage and affordability benchmarks by 2021.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2020 LEFT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="lg:text-right lg:pr-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-blue/8 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-blue mb-3">2020</div>
+              <strong class="block text-lg text-bocra-ink mb-3">COVID-19 Digital Response</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">Emergency interventions to keep Botswana connected — data price reductions, zero-rating of health and government sites, and expedited licensing for virtual services.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-white border-4 border-bocra-blue text-bocra-blue font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2020</div>
+          </div>
+          <div class="hidden lg:block"></div>
+        </div>
+
+        <!-- 2023 RIGHT -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 mb-14 items-center">
+          <div class="hidden lg:block"></div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-teal border-4 border-bocra-teal text-white font-heading font-black text-xs flex items-center justify-center shadow-lg text-center leading-tight">2023</div>
+          </div>
+          <div class="lg:pl-10">
+            <div class="bg-white rounded-2xl p-8 shadow-md border border-bocra-teal/10 hover:shadow-xl transition-shadow">
+              <div class="text-2xl font-heading font-extrabold text-bocra-teal mb-3">2023</div>
+              <strong class="block text-lg text-bocra-ink mb-3">Broadband Targets Achieved Ahead of Schedule</strong>
+              <p class="text-bocra-muted leading-relaxed text-sm">National Broadband Strategy targets exceeded with 98% population coverage — two full years ahead of the 2025 deadline.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2025 LEFT — featured -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_96px_1fr] gap-4 items-center">
+          <div class="lg:text-right lg:pr-10">
+            <div class="bg-gradient-to-br from-bocra-blue to-bocra-teal rounded-2xl p-8 shadow-2xl text-white">
+              <div class="text-2xl font-heading font-extrabold text-bocra-gold mb-3">2025</div>
+              <strong class="block text-lg mb-3">5G Spectrum Auction Complete</strong>
+              <p class="opacity-75 leading-relaxed text-sm">Botswana enters the gigabit era. BOCRA successfully auctions 5G spectrum, powering the next decade of digital innovation and economic growth across the nation.</p>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="w-16 h-16 rounded-2xl bg-bocra-gold border-4 border-bocra-gold text-bocra-ink font-heading font-black text-xs flex items-center justify-center shadow-2xl ring-4 ring-bocra-gold/30 text-center leading-tight">2025</div>
+          </div>
+          <div class="hidden lg:block"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ LEADERSHIP ══════════ -->
+  <section id="leadership" class="py-28 md:py-36 bg-white">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-block bg-bocra-blue/10 text-bocra-blue px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Leadership</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-7">The People Behind the Regulator</h2>
+        <p class="text-xl text-bocra-muted max-w-3xl mx-auto">Seasoned professionals committed to independence, excellence and Botswana's communications future.</p>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+
+        <div class="group rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 bg-bocra-smoke d1">
+          <div class="h-52 bg-gradient-to-br from-bocra-blue-d to-bocra-blue flex items-center justify-center text-6xl">👔</div>
+          <div class="p-7">
+            <div class="font-heading font-bold text-lg text-bocra-ink mb-1">Board Chairperson</div>
+            <div class="text-bocra-blue font-semibold text-xs mb-4 uppercase tracking-wider">Board of Directors</div>
+            <p class="text-bocra-muted text-sm leading-relaxed">Strategic oversight and governance ensuring BOCRA fulfils its mandate with independence and integrity.</p>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 bg-bocra-smoke d2">
+          <div class="h-52 bg-gradient-to-br from-bocra-teal-d to-bocra-teal flex items-center justify-center text-6xl">👩‍💼</div>
+          <div class="p-7">
+            <div class="font-heading font-bold text-lg text-bocra-ink mb-1">Chief Executive Officer</div>
+            <div class="text-bocra-teal font-semibold text-xs mb-4 uppercase tracking-wider">Executive Office</div>
+            <p class="text-bocra-muted text-sm leading-relaxed">Leading BOCRA's operations and digital agenda — driving Botswana's connectivity and sector development.</p>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 bg-bocra-smoke d3">
+          <div class="h-52 bg-gradient-to-br from-bocra-gold-d to-bocra-gold flex items-center justify-center text-6xl">⚖️</div>
+          <div class="p-7">
+            <div class="font-heading font-bold text-lg text-bocra-ink mb-1">Director, Legal &amp; Regulatory</div>
+            <div class="text-bocra-gold-d font-semibold text-xs mb-4 uppercase tracking-wider">Legal Affairs</div>
+            <p class="text-bocra-muted text-sm leading-relaxed">Ensuring regulatory actions are grounded in law and consumer rights are enforced consistently.</p>
+          </div>
+        </div>
+
+        <div class="group rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-400 hover:-translate-y-2 bg-bocra-smoke d4">
+          <div class="h-52 bg-gradient-to-br from-bocra-blue to-bocra-teal flex items-center justify-center text-6xl">📡</div>
+          <div class="p-7">
+            <div class="font-heading font-bold text-lg text-bocra-ink mb-1">Director, Technical Services</div>
+            <div class="text-bocra-blue font-semibold text-xs mb-4 uppercase tracking-wider">Engineering &amp; Spectrum</div>
+            <p class="text-bocra-muted text-sm leading-relaxed">Managing national spectrum and ensuring technical standards across telecoms and broadcasting infrastructure.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CONSUMER RIGHTS ══════════ -->
+  <section id="contact" class="py-28 md:py-36 bg-bocra-smoke">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-20 reveal">
+        <div class="inline-block bg-bocra-blue/10 text-bocra-blue px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-6">Consumer Rights</div>
+        <h2 class="text-5xl md:text-6xl font-heading font-extrabold mb-7">We Work for Every Motswana</h2>
+        <p class="text-xl text-bocra-muted max-w-3xl mx-auto">Know your rights as a communications user — and how BOCRA champions them every day.</p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-14 xl:gap-20 items-start reveal">
+        <!-- Rights -->
+        <div class="space-y-9">
+          <div class="flex gap-6">
+            <div class="w-12 h-12 rounded-xl bg-bocra-blue flex items-center justify-center text-white font-heading font-extrabold text-lg flex-shrink-0">1</div>
+            <div>
+              <h4 class="text-xl font-heading font-bold text-bocra-ink mb-2">Right to Quality Service</h4>
+              <p class="text-bocra-muted leading-relaxed">Operators must meet BOCRA's minimum quality-of-service standards. Persistent dropped calls, slow data or poor signal can be reported directly to us.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="w-12 h-12 rounded-xl bg-bocra-teal flex items-center justify-center text-white font-heading font-extrabold text-lg flex-shrink-0">2</div>
+            <div>
+              <h4 class="text-xl font-heading font-bold text-bocra-ink mb-2">Right to Transparent Billing</h4>
+              <p class="text-bocra-muted leading-relaxed">You are entitled to clear, accurate billing. Hidden charges and unexplained deductions are violations that BOCRA can penalise operators for.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="w-12 h-12 rounded-xl bg-bocra-gold-d flex items-center justify-center text-white font-heading font-extrabold text-lg flex-shrink-0">3</div>
+            <div>
+              <h4 class="text-xl font-heading font-bold text-bocra-ink mb-2">Right to Lodge a Complaint</h4>
+              <p class="text-bocra-muted leading-relaxed">If your operator fails to resolve your issue within 30 days, bring your complaint to BOCRA. We investigate and act — completely free of charge.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="w-12 h-12 rounded-xl bg-bocra-blue flex items-center justify-center text-white font-heading font-extrabold text-lg flex-shrink-0">4</div>
+            <div>
+              <h4 class="text-xl font-heading font-bold text-bocra-ink mb-2">Right to Privacy</h4>
+              <p class="text-bocra-muted leading-relaxed">BOCRA enforces data protection obligations on all licensed operators. Your personal communications data must be handled with security and transparency.</p>
+            </div>
+          </div>
+          <!-- Mini stats -->
+          <div class="grid grid-cols-3 gap-5 mt-8 pt-8 border-t border-bocra-blue/10">
+            <div class="text-center">
+              <div class="text-3xl font-heading font-extrabold text-bocra-blue mb-1">30</div>
+              <div class="text-xs text-bocra-muted font-semibold uppercase tracking-wide">Day resolution target</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-heading font-extrabold text-bocra-teal mb-1">Free</div>
+              <div class="text-xs text-bocra-muted font-semibold uppercase tracking-wide">Complaint service</div>
+            </div>
+            <div class="text-center">
+              <div class="text-3xl font-heading font-extrabold text-bocra-gold-d mb-1">12K+</div>
+              <div class="text-xs text-bocra-muted font-semibold uppercase tracking-wide">Cases resolved</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- File a complaint panel -->
+        <div class="bg-bocra-ink rounded-3xl p-10 lg:p-12 text-white shadow-2xl">
+          <h3 class="text-3xl font-heading font-extrabold mb-4 leading-snug">How to File a Complaint with BOCRA</h3>
+          <p class="opacity-60 text-sm leading-relaxed mb-10">Not satisfied with your operator's response? Escalate to us in three simple steps — we are your last line of defence, at no cost to you.</p>
+
+          <div class="space-y-8">
+            <div class="step-wrap flex gap-5">
+              <div class="w-11 h-11 rounded-xl bg-bocra-blue flex-shrink-0 flex items-center justify-center font-heading font-extrabold text-lg">1</div>
+              <div>
+                <div class="font-semibold text-lg mb-1.5">Contact Your Operator First</div>
+                <p class="text-sm opacity-60 leading-relaxed">Give them a fair chance to resolve the issue. Keep records — reference numbers, dates, agent names.</p>
+              </div>
+            </div>
+            <div class="step-wrap flex gap-5">
+              <div class="w-11 h-11 rounded-xl bg-bocra-teal flex-shrink-0 flex items-center justify-center font-heading font-extrabold text-lg">2</div>
+              <div>
+                <div class="font-semibold text-lg mb-1.5">Escalate to BOCRA</div>
+                <p class="text-sm opacity-60 leading-relaxed">Unresolved after 30 days? Submit via our website, email, or walk in to our Gaborone offices — no appointment needed.</p>
+              </div>
+            </div>
+            <div class="step-wrap flex gap-5">
+              <div class="w-11 h-11 rounded-xl bg-bocra-gold-d flex-shrink-0 flex items-center justify-center font-heading font-extrabold text-lg">3</div>
+              <div>
+                <div class="font-semibold text-lg mb-1.5">We Investigate &amp; Act</div>
+                <p class="text-sm opacity-60 leading-relaxed">Our team engages the operator and ensures you receive a fair, documented resolution — at absolutely no cost to you.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 mt-10 pt-8 border-t border-white/10">
+            <a href="tel:+26736376" class="flex items-center gap-3 bg-bocra-blue px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-bocra-blue-l transition-colors">📞 +267 363 7600</a>
+            <a href="mailto:bocra@bocra.org.bw" class="flex items-center gap-3 border border-white/20 px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-white/10 transition-colors">✉ bocra@bocra.org.bw</a>
+            <a href="#" class="flex items-center gap-3 border border-bocra-gold/40 text-bocra-gold px-6 py-3.5 rounded-xl font-semibold text-sm hover:bg-bocra-gold/10 transition-colors">🌐 www.bocra.org.bw</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ CTA ══════════ -->
+  <section class="py-28 md:py-36 bg-bocra-gold">
+    <div class="max-w-3xl mx-auto px-6 text-center reveal">
+      <div class="inline-block bg-bocra-ink/10 text-bocra-ink px-6 py-2.5 rounded-full text-xs font-bold tracking-[0.18em] uppercase mb-8">Get Involved</div>
+      <h2 class="text-5xl md:text-6xl font-heading font-extrabold text-bocra-ink mb-7 leading-tight">Ready to Engage with Your Regulator?</h2>
+      <p class="text-xl text-bocra-ink/65 mb-14 leading-relaxed max-w-2xl mx-auto">BOCRA is open, independent and accountable. Explore our resources, public consultations and policy documents — your voice shapes Botswana's communications future.</p>
+      <div class="flex flex-wrap justify-center gap-5">
+        <a href="#mandate"    class="bg-bocra-ink text-white px-10 py-5 rounded-2xl font-bold text-lg hover:bg-bocra-blue transition-all duration-300 hover:-translate-y-1 shadow-lg hover:shadow-2xl">Explore Our Mandate</a>
+        <a href="#leadership" class="bg-white text-bocra-ink px-10 py-5 rounded-2xl font-bold text-lg hover:bg-bocra-smoke transition-all duration-300 hover:-translate-y-1 shadow-lg">Meet Our Leadership</a>
+        <a href="#contact"    class="border-2 border-bocra-ink/30 text-bocra-ink px-10 py-5 rounded-2xl font-bold text-lg hover:bg-bocra-ink/10 transition-all duration-300">File a Complaint</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="bg-bocra-ink text-white pt-20 pb-10">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 pb-16 border-b border-white/8">
+
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-3.5 mb-6">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-bocra-blue to-bocra-teal flex items-center justify-center text-white font-heading font-black text-2xl">B</div>
+            <span class="font-heading font-extrabold text-2xl">BOCRA</span>
+          </div>
+          <p class="text-sm opacity-50 leading-relaxed mb-5">Botswana Communications Regulatory Authority — established 1 April 2013 under the Communications Regulatory Authority Act, 2012.</p>
+          <p class="text-xs opacity-30 leading-relaxed">Private Bag 00495, Gaborone, Botswana</p>
+          <div class="flex gap-2 mt-6">
+            <div class="w-6 h-6 rounded-full bg-bocra-blue ring-2 ring-bocra-blue/30"></div>
+            <div class="w-6 h-6 rounded-full bg-bocra-teal ring-2 ring-bocra-teal/30"></div>
+            <div class="w-6 h-6 rounded-full bg-bocra-gold ring-2 ring-bocra-gold/30"></div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-xs uppercase tracking-[0.18em] mb-6 opacity-80">Our Work</h4>
+          <ul class="space-y-4">
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Telecommunications</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Broadcasting</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Postal Services</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Digital Economy</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Spectrum Management</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-xs uppercase tracking-[0.18em] mb-6 opacity-80">Resources</h4>
+          <ul class="space-y-4">
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Annual Reports</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Legislation</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Public Consultations</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Policy Documents</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Research &amp; Statistics</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-xs uppercase tracking-[0.18em] mb-6 opacity-80">Contact</h4>
+          <ul class="space-y-4">
+            <li><a href="tel:+26736376" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">📞 +267 363 7600</a></li>
+            <li><a href="mailto:bocra@bocra.org.bw" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">✉ bocra@bocra.org.bw</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">🌐 www.bocra.org.bw</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">File a Complaint</a></li>
+            <li><a href="#" class="text-sm opacity-50 hover:opacity-100 hover:text-bocra-gold transition-all">Whistleblower Portal</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-5 text-xs opacity-35">
+        <div>© 2025 BOCRA &nbsp;·&nbsp; All rights reserved &nbsp;·&nbsp; <span class="text-bocra-gold opacity-100">Regulating with Botho</span></div>
+        <div class="flex gap-7">
+          <a href="#" class="hover:opacity-75 transition-opacity">Privacy Policy</a>
+          <a href="#" class="hover:opacity-75 transition-opacity">Terms of Use</a>
+          <a href="#" class="hover:opacity-75 transition-opacity">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // NAV
+    const navEl = document.getElementById('nav');
+    addEventListener('scroll', () => navEl.classList.toggle('scrolled', scrollY > 80));
+    document.getElementById('mob-btn').onclick = () => document.getElementById('mob-menu').classList.toggle('hidden');
+
+    // HERO CANVAS
+    (function(){
+      const cv = document.getElementById('hero-canvas');
+      const cx = cv.getContext('2d');
+      let W, H, pts = [];
+      const C = ['#0066B3','#2A9D8F','#EFB034','rgba(255,255,255,0.5)'];
+      function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
+      class P {
+        constructor(){ this.reset(); }
+        reset(){ this.x=Math.random()*W; this.y=Math.random()*H; this.r=Math.random()*2+0.4; this.vx=(Math.random()-.5)*.4; this.vy=(Math.random()-.5)*.4; this.c=C[0|Math.random()*C.length]; this.a=Math.random()*.45+.1; }
+        tick(){ this.x+=this.vx; this.y+=this.vy; if(this.x<-50||this.x>W+50||this.y<-50||this.y>H+50) this.reset(); }
+        draw(){ cx.save(); cx.globalAlpha=this.a; cx.fillStyle=this.c; cx.beginPath(); cx.arc(this.x,this.y,this.r,0,Math.PI*2); cx.fill(); cx.restore(); }
+      }
+      resize(); addEventListener('resize', resize);
+      for(let i=0;i<130;i++) pts.push(new P());
+      function frame(){
+        cx.clearRect(0,0,W,H);
+        for(let i=0;i<pts.length;i++){
+          for(let j=i+1;j<pts.length;j++){
+            const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.hypot(dx,dy);
+            if(d<110){ cx.save(); cx.globalAlpha=(1-d/110)*.09; cx.strokeStyle='#0066B3'; cx.lineWidth=.6; cx.beginPath(); cx.moveTo(pts[i].x,pts[i].y); cx.lineTo(pts[j].x,pts[j].y); cx.stroke(); cx.restore(); }
+          }
+          pts[i].tick(); pts[i].draw();
+        }
+        requestAnimationFrame(frame);
+      }
+      frame();
+    })();
+
+    // SCROLL REVEAL
+    const ro = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold:.1 });
+    document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => ro.observe(el));
+
+    // STATS BAR COUNTER
+    function countUp(el, target, dec, suf){
+      let v=0; const step = target/60;
+      const t = setInterval(()=>{
+        v = Math.min(v+step, target);
+        el.textContent = (dec>0 ? v.toFixed(dec) : Math.round(v)) + suf;
+        if(v>=target) clearInterval(t);
+      }, 22);
+    }
+    const sObs = new IntersectionObserver(es=>{
+      if(es[0].isIntersecting){
+        document.querySelectorAll('.s-num').forEach(el=>{
+          countUp(el, +el.dataset.target, +el.dataset.dec, el.dataset.suf||'');
+        });
+        sObs.disconnect();
+      }
+    },{threshold:.3});
+    const sBar = document.querySelector('.s-num');
+    if(sBar) sObs.observe(sBar.closest('div'));
+
+    // IMPACT DISPLAY COUNTER
+    const iObs = new IntersectionObserver(es=>{
+      if(es[0].isIntersecting){
+        document.querySelectorAll('.i-num').forEach(el=>{
+          const fin = el.dataset.d;
+          const raw = parseFloat(fin.replace(/[^0-9.]/g,''));
+          if(isNaN(raw)||raw===0){ setTimeout(()=>el.textContent=fin,500); return; }
+          const isDec = fin.includes('.');
+          let cur=0; const inc=raw/55;
+          const t=setInterval(()=>{
+            cur=Math.min(cur+inc,raw);
+            el.textContent = fin.replace(/[\d.]+/, isDec?cur.toFixed(1):Math.round(cur));
+            if(cur>=raw){ el.textContent=fin; clearInterval(t); }
+          },25);
+        });
+        iObs.disconnect();
+      }
+    },{threshold:.2});
+    const ig=document.getElementById('impact-grid');
+    if(ig) iObs.observe(ig);
+
+    // QUOTE CAROUSEL
+    const quotes=[
+      {t:"A person is a person through other persons. At BOCRA we connect Botswana with the same spirit of Botho — because communication is the most human act of all.", a:"— BOCRA Leadership"},
+      {t:"Botho ke motso wa rona. Humanity is our root, and the foundation of everything we regulate.", a:"— BOCRA Core Values"},
+      {t:"Together we build a digitally inclusive Botswana — where no village is too remote, and no citizen is left offline.", a:"— BOCRA Universal Access Vision"},
+      {t:"We do not just regulate signals. We safeguard the conversations, connections and commerce that make Botswana thrive.", a:"— BOCRA Annual Report"}
+    ];
+    let qi=0;
+    const qT=document.getElementById('quote-text');
+    const qA=document.getElementById('quote-author');
+    const qD=document.getElementById('quote-dots');
+    quotes.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.className=`w-3.5 h-3.5 rounded-full transition-all duration-300 ${i===0?'bg-bocra-gold scale-125':'bg-white/30'}`;
+      d.setAttribute('aria-label',`Quote ${i+1}`);
+      d.onclick=()=>go(i);
+      qD.appendChild(d);
+    });
+    function go(i){
+      qi=i; qT.style.opacity=0;
+      setTimeout(()=>{ qT.textContent=quotes[i].t; qA.textContent=quotes[i].a; qT.style.opacity=1;
+        qD.querySelectorAll('button').forEach((d,j)=>{
+          d.className=`w-3.5 h-3.5 rounded-full transition-all duration-300 ${j===i?'bg-bocra-gold scale-125':'bg-white/30'}`;
+        });
+      },420);
+    }
+    setInterval(()=>go((qi+1)%quotes.length), 7000);
+  </script>
+</body>
+</html>

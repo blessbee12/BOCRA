@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Botswana Communications Regulatory Authority - Regulating Communications for a Digital Botswana"/>
+  <title>BOCRA - Botswana Communications Regulatory Authority</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary:    '#0066B3',      // Deep trustworthy blue (flag inspired)
+            primaryDark:'#004080',
+            accent:     '#2A9D8F',      // Modern teal-green
+            accentWarm: '#E76F51',      // Warm coral for CTAs
+            neutral:    '#F8FAFC',
+            neutralDark:'#0F172A',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          boxShadow: {
+            card: '0 10px 25px -5px rgba(0, 102, 179, 0.1)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .gradient-header {
+      background: linear-gradient(135deg, #0066B3 0%, #2A9D8F 100%);
+    }
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .nav-active {
+      color: #2A9D8F !important;
+      border-bottom: 2px solid #2A9D8F;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased bg-neutral dark:bg-neutralDark text-slate-900 dark:text-slate-100 min-h-screen">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useContext, createContext } = React;
+
+    // ─── Theme ────────────────────────────────────────────────
+    const ThemeContext = createContext();
+    const ThemeProvider = ({ children }) => {
+      const [dark, setDark] = useState(() => localStorage.getItem('darkMode') === 'true');
+      useEffect(() => {
+        document.documentElement.classList.toggle('dark', dark);
+        localStorage.setItem('darkMode', dark);
+      }, [dark]);
+      return <ThemeContext.Provider value={{ dark, toggle: () => setDark(p => !p) }}>{children}</ThemeContext.Provider>;
+    };
+
+    // ─── Scroll Reveal Hook ───────────────────────────────────
+    const useScrollReveal = () => {
+      useEffect(() => {
+        const obs = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('active')), { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => obs.observe(el));
+        return () => obs.disconnect();
+      }, []);
+    };
+
+    // ─── Navigation ───────────────────────────────────────────
+    const Navigation = () => {
+      const { dark, toggle } = useContext(ThemeContext);
+      const [mobile, setMobile] = useState(false);
+      const [active, setActive] = useState('home');
+
+      const links = [
+        { id: 'home', label: 'Home' },
+        { id: 'about', label: 'About' },
+        { id: 'mandate', label: 'Mandate' },
+        { id: 'board', label: 'Board' },
+        { id: 'management', label: 'Management' },
+        { id: 'news', label: 'News' },
+        { id: 'licensing', label: 'Licensing' },
+        { id: 'contact', label: 'Contact' }
+      ];
+
+      useEffect(() => {
+        const handler = () => {
+          const pos = window.scrollY + 100;
+          for (const {id} of links) {
+            const el = document.getElementById(id);
+            if (el && pos >= el.offsetTop && pos < el.offsetTop + el.offsetHeight) {
+              setActive(id);
+              break;
+            }
+          }
+        };
+        window.addEventListener('scroll', handler);
+        return () => window.removeEventListener('scroll', handler);
+      }, []);
+
+      return (
+        <nav className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="max-w-7xl mx-auto px-5 lg:px-8 flex justify-between items-center h-20">
+            {/* Logo */}
+            <a href="#home" className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                B
+              </div>
+              <div>
+                <div className="font-bold text-xl tracking-tight">BOCRA</div>
+                <div className="text-xs text-slate-600 dark:text-slate-400">Botswana Communications Regulatory Authority</div>
+              </div>
+            </a>
+
+            {/* Desktop menu */}
+            <div className="hidden lg:flex items-center gap-8">
+              {links.map(l => (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  className={`font-medium text-sm transition-colors ${active === l.id ? 'nav-active' : 'text-slate-700 dark:text-slate-300 hover:text-accent'}`}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </div>
+
+            {/* Controls */}
+            <div className="flex items-center gap-4">
+              <button onClick={toggle} aria-label="Toggle dark mode" className="p-2 hover:text-accent transition">
+                {dark ? (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M17.293 13.293A8 8 0 016.707 2.707 8.001 8.001 0 1010.586 10.586z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </button>
+              <button onClick={() => setMobile(!mobile)} className="lg:hidden p-2" aria-label="Toggle menu">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={mobile ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile menu */}
+          {mobile && (
+            <div className="lg:hidden bg-white dark:bg-slate-900 border-t dark:border-slate-800 py-4">
+              <div className="px-5 space-y-4">
+                {links.map(l => (
+                  <a key={l.id} href={`#${l.id}`} className="block py-2 text-base font-medium hover:text-accent" onClick={() => setMobile(false)}>
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </nav>
+      );
+    };
+
+    // ─── Hero ─────────────────────────────────────────────────
+    const Hero = () => (
+      <section id="home" className="relative gradient-header text-white py-32 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <svg className="absolute top-0 left-0 w-full h-full" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" strokeWidth="0.5"/></pattern></defs>
+            <rect width="100" height="100" fill="url(#grid)"/>
+          </svg>
+        </div>
+        <div className="relative max-w-5xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 scroll-reveal">
+            Regulating Communications<br/>
+            <span className="opacity-90">for a Digital Botswana</span>
+          </h1>
+          <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-10 scroll-reveal delay-100">
+            Converged independent regulator for telecommunications, broadcasting, postal services, spectrum and digital infrastructure.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-5 justify-center scroll-reveal delay-200">
+            <a href="#licensing" className="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary font-semibold rounded-lg shadow-lg hover:bg-slate-100 transition">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              Apply for Licence
+            </a>
+            <a href="#contact" className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+              Report Complaint
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+
+    // ─── Section Helpers ──────────────────────────────────────
+    const Section = ({ id, title, children, bg = 'bg-white dark:bg-slate-900' }) => (
+      <section id={id} className={`${bg} py-24`}>
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 scroll-reveal">{title}</h2>
+          {children}
+        </div>
+      </section>
+    );
+
+    const Card = ({ title, desc, icon, delay }) => (
+      <div className="p-8 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:border-accent transition-all duration-300 shadow-card scroll-reveal" style={{transitionDelay: `${delay}ms`}}>
+        <svg className="w-10 h-10 text-accent mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={icon} />
+        </svg>
+        <h3 className="text-xl font-semibold mb-3">{title}</h3>
+        <p className="text-slate-600 dark:text-slate-400">{desc}</p>
+      </div>
+    );
+
+    // ─── Content Sections ─────────────────────────────────────
+    const About = () => (
+      <Section id="about" title="About BOCRA">
+        <div className="prose dark:prose-invert max-w-none text-lg text-center mb-12 scroll-reveal delay-100">
+          <p>Established on 1 April 2013 under the Communications Regulatory Authority Act, 2012 — BOCRA is Botswana's converged, independent regulator for telecommunications, broadcasting, postal services, spectrum management, and digital communications.</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          <Card title="Independent Authority" desc="Autonomous oversight ensuring fair competition and consumer protection." icon="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" delay={0} />
+          <Card title="Converged Regulation" desc="Unified framework covering telecom, broadcasting, postal and cybersecurity." icon="M13 10V3L4 14h7v7l9-11h-7z" delay={100} />
+          <Card title="Digital Future Focus" desc="Supporting Botswana's National Digital Economy Roadmap 2025–2030." icon="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" delay={200} />
+        </div>
+      </Section>
+    );
+
+    const Mandate = () => (
+      <Section id="mandate" title="Mandate & Services" bg="bg-slate-50 dark:bg-slate-950">
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {t:"Telecommunications & Internet", d:"Network facilities, service licensing, tariffs, quality monitoring.", i:"M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"},
+            {t:"Spectrum Management", d:"Radio frequency planning, allocation, monitoring and international coordination.", i:"M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"},
+            {t:"Broadcasting", d:"Commercial radio & TV licensing, content regulation (excluding state broadcasters).", i:"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"},
+            {t:"Postal Services", d:"Universal postal obligations, courier licensing, postal financial services.", i:"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"},
+            {t:"Cybersecurity & bwCIRT", d:"National Computer Incident Response Team, critical infrastructure protection.", i:"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"},
+            {t:"Consumer Protection", d:"Complaints handling, tariff approval, type approval of equipment.", i:"M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"}
+          ].map((item,i) => <Card key={i} title={item.t} desc={item.d} icon={item.i} delay={i*80} />)}
+        </div>
+      </Section>
+    );
+
+    const Board = () => {
+      const members = [
+        {n:"Dr. Bokamoso Basutli, PhD", r:"Chairperson", d:"Professional Engineer, BIUST academic, BotswanaSat-1 project leader."},
+        {n:"Mr. Moabi Pusumane", r:"Vice Chairperson", d:"Commercial & telecom strategy expert (Coca-Cola Beverages Botswana)."},
+        {n:"Ms. Montle Phuthego", r:"Member", d:"MSc Economics, business development (TechnoServe, BITC)."},
+        {n:"Ms. Alta Dimpho Seleka", r:"Member", d:"Public finance expert, Acting Commissioner at BURS."},
+        {n:"Ms. Lebogang George", r:"Member", d:"ICT, data protection & privacy law specialist."},
+        {n:"Mr. Ronald Kgafela, CODP", r:"Member", d:"HR & organisational development expert (NBFIRA)."},
+        {n:"Dr. Kennedy Ramojela", r:"Member", d:"Strategic digital economy alignment."},
+        {n:"Mr. Martin Mokgware", r:"CEO (ex-officio)", d:"Chief Executive of BOCRA."}
+      ];
+
+      return (
+        <Section id="board" title="Board of Directors">
+          <p className="text-center text-lg text-slate-600 dark:text-slate-400 mb-12 max-w-4xl mx-auto scroll-reveal delay-100">
+            Appointed effective 1 August 2025 — guiding strategy in line with national digital goals.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {members.map((m,i) => (
+              <div key={i} className="p-7 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-card hover:border-accent transition-all scroll-reveal" style={{transitionDelay: `${i*80}ms`}}>
+                <h3 className="text-lg font-bold mb-1">{m.n}</h3>
+                <div className="text-accent font-medium text-sm mb-3">{m.r}</div>
+                <p className="text-sm text-slate-600 dark:text-slate-400">{m.d}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      );
+    };
+
+    const Management = () => {
+      const team = [
+        "Mr. Martin Mokgware – Chief Executive",
+        "Mr. Murphy Setshwane – Director Business Development",
+        "Mr. Peter Tladinyane – Director Corporate Services",
+        "Ms. Bonny Mine – Director Finance",
+        "Mr. Bathopi Luke – Director Technical Services",
+        "Ms. Tebogo Mmoshe – Director of Licensing",
+        "Ms. Maitseo Ratladi – Director Broadband and Universal Service",
+        "Ms. Joyce Isa-Molwane – Director Legal, Compliance & Board Secretary"
+      ];
+
+      return (
+        <Section id="management" title="Executive Management">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            {team.map((line,i) => {
+              const [name, role] = line.split(' – ');
+              return (
+                <div key={i} className="p-6 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-center shadow-card hover:border-accent transition scroll-reveal" style={{transitionDelay: `${i*60}ms`}}>
+                  <h3 className="font-semibold mb-2">{name}</h3>
+                  <p className="text-sm text-accent">{role}</p>
+                </div>
+              );
+            })}
+          </div>
+        </Section>
+      );
+    };
+
+    const Footer = () => (
+      <footer className="bg-slate-900 text-slate-300 py-16">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+          <div>
+            <div className="text-2xl font-bold text-white mb-4">BOCRA</div>
+            <p className="text-sm">Regulating Communications for a Digital Botswana</p>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <p>Plot 50671, Independence Avenue<br/>Gaborone, Botswana</p>
+            <p className="mt-3">+267 395 7755<br/>info@bocra.org.bw</p>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#licensing" className="hover:text-accent transition">Licensing</a></li>
+              <li><a href="#news" className="hover:text-accent transition">News & Notices</a></li>
+              <li><a href="#contact" className="hover:text-accent transition">Complaints</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="text-white font-semibold mb-4">Legal</h4>
+            <p className="text-sm">© {new Date().getFullYear()} Botswana Communications Regulatory Authority</p>
+          </div>
+        </div>
+      </footer>
+    );
+
+    // ─── Main App ─────────────────────────────────────────────
+    const App = () => {
+      useScrollReveal();
+      return (
+        <ThemeProvider>
+          <Navigation />
+          <Hero />
+          <About />
+          <Mandate />
+          <Board />
+          <Management />
+          {/* Placeholder stubs – expand later */}
+          <Section id="news" title="News & Events" />
+          <Section id="licensing" title="Licensing & Applications" />
+          <Section id="contact" title="Contact Us" />
+          <Footer />
+        </ThemeProvider>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
